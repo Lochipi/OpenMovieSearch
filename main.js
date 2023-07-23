@@ -36,8 +36,8 @@ function collectMovies(movieId) {
                         <button><i class="fa-solid fa-circle-plus"></i> WatchList</button>
                     </div>
                     <div>
-                        <p>Cast : ${data.Actors}</p>
-                        <p>Director : ${data.Director}</p>
+                        <p><span class="actors">Cast: </span> ${data.Actors}</p>
+                        <p><span class="director">Director: </span>${data.Director}</p>
                         <p>${data.Plot}</p>
                     </div>
                 </div>
