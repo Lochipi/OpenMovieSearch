@@ -10,16 +10,16 @@ function fetchMovies(title) {
             let dataMovies = data.Search
             for (let movie of dataMovies) {
                 let movieId = movie.imdbID
-                collectMovies(movieId)
+                moviesCollection(movieId)
             }
         })
         .catch(error => {
-            console.log("This is an error message", error);
+            movieList.innerHTML = `<h2>Something went wrong, Please try refreshing the page<h2/>`
         });
 }
 
 
-function collectMovies(movieId) {
+function moviesCollection(movieId) {
     fetch(`http://www.omdbapi.com/?i=${movieId}&apikey=1a7c33d6`)
         .then(response => response.json())
         .then(data => {
@@ -50,7 +50,7 @@ function collectMovies(movieId) {
         });
 }
 
-collectMovies()
+moviesCollection()
 
 button.addEventListener("click", function () {
     fetchMovies(inputSearch.value);
