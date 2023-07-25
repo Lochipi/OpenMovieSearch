@@ -6,7 +6,6 @@ function fetchMovies(title) {
     fetch(`http://www.omdbapi.com/?s=${title}&apikey=1a7c33d6`)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             let dataMovies = data.Search
             for (let movie of dataMovies) {
                 let movieId = movie.imdbID
@@ -23,6 +22,8 @@ function moviesCollection(movieId) {
     fetch(`http://www.omdbapi.com/?i=${movieId}&apikey=1a7c33d6`)
         .then(response => response.json())
         .then(data => {
+            // const { Poster, Title, imdbRating, imdbID, Genre, Runtime, Plot } = data;
+             
             movieList.innerHTML += `
             <div class="movie-lists">
                 <div class="movie-img">
@@ -33,7 +34,7 @@ function moviesCollection(movieId) {
                     <div class="movie-desc">
                         <p>${data.Runtime}</p>
                         <p>${data.Genre}</p>
-                        <button><i class="fa-solid fa-circle-plus"></i> WatchList</button>
+                        <button id="${data.imdbID}"><i class="fa-solid fa-circle-plus"></i> WatchList</button>
                     </div>
                     <div>
                         <p><span class="actors">Cast: </span> ${data.Actors}</p>
@@ -44,15 +45,31 @@ function moviesCollection(movieId) {
             </div>
             <hr />
             `;
+
+            // function addToWatchlist(movieId) {
+            //     const watchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
+                
+            //     // Check if the movie is already in the watchlist
+            //     const movieInWatchlist = watchlist.find(item => item.imdbID === movieId);
+                
+            //     if (!movieInWatchlist) {
+            //       watchlist.push({ imdbID: movieId });
+            //       localStorage.setItem('watchlist', JSON.stringify(watchlist));
+            //       alert("Added to Watchlist!");
+            //     } else {
+            //       alert("This movie is already in your Watchlist.");
+            //     }
+            //   }
+
         })
         .catch(error => {
             console.log("This is an error message", error);
         });
 }
 
-moviesCollection()
+// moviesCollection()
 
 button.addEventListener("click", function () {
     fetchMovies(inputSearch.value);
+    inputSearch.value = "";
 });
-
