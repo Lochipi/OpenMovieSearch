@@ -138,10 +138,10 @@ a {
 /* movie content */
 
 .desc {
-  padding: 2em;
+  padding: 0 2em;
   display: flex;
   flex-direction: column;
-  gap: 2em;
+  gap: 1em;
 }
 
 .desc h2 {
@@ -156,7 +156,7 @@ a {
 }
 
 .movie-img img{
-  width: 200px;
+  width: 250px;
   height: 250px;
   object-fit: cover;
 }
